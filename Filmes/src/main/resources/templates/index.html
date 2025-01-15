@@ -7,11 +7,12 @@
     <title>FilmesOMDb</title>
 </head>
 <body>
-    
-    <input type="text" id="pesquisa" onfocus="mostrarResultados()" onblur="esconderResultados()" onkeyup="pesquisarFilme()" placeholder="Pesquisar Filmes..">
+    <div id = "siteHeader">
+        <input type="text" id="pesquisa" onfocus="mostrarResultados()" onblur="esconderResultados()" onkeyup="pesquisarFilme()" placeholder="Pesquisar Filmes.."> 
         <ul id="resultadosPesquisa">
             <div class="Filmes"></div>
         </ul>   
+    </div>
     
     <script src="js/index.js"></script>
 </body>
