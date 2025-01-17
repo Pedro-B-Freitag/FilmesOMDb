@@ -9,10 +9,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (data.Response === 'True') {
                     const filmeNome = data.Title;
                     const filmePoster = data.Poster;
+                    const filmeDescricao = data.Plot;
                     const filmePosterHtml = `<img src="${filmePoster}" alt="${filmeNome}" >`;
                     document.getElementById('posterFilme').innerHTML += filmePosterHtml;
                     document.getElementById('tituloFilme').innerHTML = filmeNome;
-                    adjustFontSize();
+                    document.getElementById('descricaoFilme').innerHTML = filmeDescricao;
+                    ajustarTamanhoFonte(50,10,'tituloFilme', '.titulo');
+                    ajustarTamanhoFonte(25,5,'descricaoFilme', '.descricao');
                 }
             })
             .catch(err => {
@@ -20,11 +23,9 @@ document.addEventListener('DOMContentLoaded', function () {
             });
     }
 
-    function adjustFontSize() {
-        const element = document.getElementById('tituloFilme');
-        const container = document.querySelector('.titulo');
-        const maxFontSize = 50;
-        const minFontSize = 10;
+    function ajustarTamanhoFonte(maxFontSize, minFontSize, id, div) {
+        const element = document.getElementById(id);
+        const container = document.querySelector(div);
         let fontSize = maxFontSize;
     
         element.style.fontSize = `${fontSize}px`;
@@ -34,5 +35,5 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    window.addEventListener('resize', adjustFontSize);
+    window.addEventListener('resize', ajustarTamanhoFonte);
 });

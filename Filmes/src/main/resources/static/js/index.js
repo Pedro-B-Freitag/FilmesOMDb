@@ -9,7 +9,6 @@ function esconderResultados() {
 }
 
 function pesquisarFilme() {
-
     var input, filter, ul, li, a, i, txtValue;
     input = document.getElementById("pesquisa");
     filter = input.value.toUpperCase();
@@ -28,11 +27,13 @@ function pesquisarFilme() {
                 const filmeNome = filme.Title;
                 const filmePoster = filme.Poster;
                 const filmeID = filme.imdbID;
-                const filmeHtml = `<li><a href='Detalhes?filmeId=${filmeID}'><div class = "poster-filme"> <img  src="${filmePoster}" alt="${filmeNome}"></div><h2>${filmeNome}</h2></a></li>`;
-                document.querySelector('.Filmes').innerHTML += filmeHtml;
-        })
-        
-    }})
+                if(filmePoster !== 'N/A'){
+                    const filmeHtml = `<li><a href='Detalhes?filmeId=${filmeID}'><div class = "poster-filme"> <img  src="${filmePoster}" alt="${filmeNome}"></div><h2>${filmeNome}</h2></a></li>`;
+                    document.querySelector('.Filmes').innerHTML += filmeHtml;
+                }
+            })
+        }})
+
     .catch(err => {
         console.log(err);
     });
@@ -40,11 +41,14 @@ function pesquisarFilme() {
     for (i = 0; i < li.length; i++) {
         a = li[i].getElementsByTagName("a")[0];
         txtValue = a.textContent || a.innerText;
+        
         if (txtValue.toUpperCase().indexOf(filter) > -1) {
             li[i].style.display = "";
         } else {
             li[i].style.display = "none";
         }
     }
-
+        
 }
+
+
